@@ -14,6 +14,7 @@ app.title("Password Generator")
 
 # Function to generate a password
 def generate_password():
+    password_entry.configure(state="normal")
     length = length_slider.get()
     characters = string.ascii_letters
     if numbers_var.get():
@@ -24,6 +25,7 @@ def generate_password():
     password = ''.join(random.choice(characters) for _ in range(int(length)))
     password_entry.delete(0, "end")
     password_entry.insert(0, password)
+    password_entry.configure(state="disabled")
 
 # Function to copy the password
 def copy_password():
@@ -44,7 +46,7 @@ special_var = ctk.BooleanVar()
 ctk.CTkCheckBox(app, text="Include Numbers", variable=numbers_var).pack(pady=3)
 ctk.CTkCheckBox(app, text="Include Special Characters", variable=special_var).pack(pady=3)
 
-password_entry = ctk.CTkEntry(app, width=250)
+password_entry = ctk.CTkEntry(app, width=250, state="disabled")
 password_entry.pack(pady=10)
 
 button_frame = ctk.CTkFrame(app)
