@@ -2,6 +2,7 @@ import customtkinter as ctk
 import random
 import string
 import pyperclip
+from tkinter import messagebox
 
 # Initialize the app
 ctk.set_appearance_mode("dark") # Themes are "System", "Dark", "Light"
@@ -26,7 +27,10 @@ def generate_password():
 
 # Function to copy the password
 def copy_password():
-    pyperclip.copy(password_entry.get())
+    password = password_entry.get()
+    if password:
+        pyperclip.copy(password)
+        messagebox.showinfo("Success", "Password copied to clipboard!")
         
 # UI Elements
 ctk.CTkLabel(app, text="Select Password Length:").pack(pady=5)
